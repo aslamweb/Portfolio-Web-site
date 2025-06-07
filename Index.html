@@ -1,87 +1,58 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Eid Ul Adha Name Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f9f5f0;
-      text-align: center;
-      padding: 30px;
-    }
-
-    h1 {
-      color: #4a2e1b;
-      margin-bottom: 10px;
-    }
-
-    input[type="text"] {
-      padding: 12px;
-      font-size: 18px;
-      width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      padding: 12px 25px;
-      font-size: 16px;
-      background-color: #8b5e3c; /* Brown tone */
-      color: white;
-      border: none;
-      border-radius: 6px;
-      margin-top: 10px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #a06d45;
-    }
-
-    canvas {
-      border: 1px solid #ddd;
-      margin-top: 25px;
-      border-radius: 8px;
-    }
-
-    #downloadLink {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #4a2e1b;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 6px;
-    }
-
-    #downloadLink:hover {
-      background-color: #5c3b27;
     }
   </style>
 </head>
-<body>
+<body class="bg-[#f9f5f0] text-center px-6 py-10 md:px-12">
 
-  <h1>Eid Ul Adha Picture Name Generator</h1>
-  <p>Enter your name to personalize your Eid greeting image.</p>
+  <h1 class="text-3xl md:text-4xl font-semibold text-[#4a2e1b] mb-3">Eid Ul Adha Picture Name Generator</h1>
+  <p class="text-base md:text-lg mb-6">Enter your name to personalize your Eid greeting image.</p>
 
-  <input type="text" id="nameInput" placeholder="Enter your name" />
-  <br>
-  <button onclick="generateImage()">Generate</button>
+  <div class="flex flex-col items-center gap-4">
+    <input
+      type="text"
+      id="nameInput"
+      placeholder="Enter your name"
+      class="px-4 py-3 w-full max-w-sm text-lg border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8b5e3c]"
+    />
 
-  <br>
-  <canvas id="eidCanvas" width="768" height="960"></canvas>
-  <br>
-  <a id="downloadLink" style="display:none;" download="eid_greeting.png">Download Your Eid Image</a>
+    <button
+      onclick="generateImage()"
+      class="px-6 py-3 text-white text-base rounded-md bg-[#8b5e3c] hover:bg-[#a06d45] transition-colors"
+    >
+      Generate
+    </button>
+
+    <canvas
+      id="eidCanvas"
+      width="768"
+      height="960"
+      class="border border-gray-300 rounded-lg mt-6 w-full max-w-3xl"
+    ></canvas>
+
+    <a
+      id="downloadLink"
+      class="hidden mt-4 px-5 py-3 bg-[#4a2e1b] text-white font-semibold rounded-md hover:bg-[#5c3b27] transition-colors"
+      download="eid_greeting.png"
+    >
+      Download Your Eid Image
+    </a>
+  </div>
 
   <script>
     const canvas = document.getElementById('eidCanvas');
     const ctx = canvas.getContext('2d');
     const image = new Image();
-    image.src = 'Brown and Beige Minimalist Eid Ul Adha Instagram Post.png'; // Make sure this is in the same folder
+    image.src = 'Brown and Beige Minimalist Eid Ul Adha Instagram Post.png'; // Ensure this file is present
 
     image.onload = function () {
       ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
@@ -91,20 +62,17 @@
       const name = document.getElementById('nameInput').value.trim();
       if (!name) return alert("Please enter your name.");
 
-      // Redraw image
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
-      // Add name at the top
       ctx.font = "42px 'Poppins'";
-      ctx.fillStyle = "#4a2e1b"; // Matching brown
+      ctx.fillStyle = "#4a2e1b";
       ctx.textAlign = "center";
-      ctx.fillText(name, canvas.width / 2, 70); // Adjusted Y position
+      ctx.fillText(name, canvas.width / 2, 70);
 
-      // Enable download
       const downloadLink = document.getElementById('downloadLink');
       downloadLink.href = canvas.toDataURL('image/png');
-      downloadLink.style.display = 'inline-block';
+      downloadLink.classList.remove('hidden');
     }
   </script>
 
