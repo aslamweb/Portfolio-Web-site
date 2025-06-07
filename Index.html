@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +41,7 @@
     const canvas = document.getElementById('eidCanvas');
     const ctx = canvas.getContext('2d');
     const image = new Image();
-    image.src = 'eid_image.png'; // This should match the uploaded image name
+    image.src = 'Brown and Beige Minimalist Eid Ul Adha Instagram Post.png'; // updated filename
 
     image.onload = function () {
       ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
@@ -52,17 +51,14 @@
       const name = document.getElementById('nameInput').value.trim();
       if (!name) return alert("Please enter your name.");
 
-      // Clear and redraw image
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
-      // Add name text
       ctx.font = "40px 'Arial'";
-      ctx.fillStyle = "#4a2e1b"; // Dark brown to match the theme
+      ctx.fillStyle = "#4a2e1b";
       ctx.textAlign = "center";
-      ctx.fillText(name, canvas.width / 2, 60); // Position name at the top
+      ctx.fillText(name, canvas.width / 2, 60);
 
-      // Show download link
       const downloadLink = document.getElementById('downloadLink');
       downloadLink.href = canvas.toDataURL('image/png');
       downloadLink.style.display = 'inline-block';
